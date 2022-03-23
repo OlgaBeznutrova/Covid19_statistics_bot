@@ -1,0 +1,9 @@
+<b>&#127758; TOP 5 viewed countries:</b>
+{% for country in countries %}
+&#128165; <b>{{ country._id }}</b>: {{ country.count }} time(s)
+{%- endfor %}
+
+<b>&#129299; TOP 5 users:</b>
+{% for user in users %}
+&#128165; <b>{{ user._id }}</b>: {{ user.count }} time(s)
+{%- endfor %}
