@@ -1,7 +1,10 @@
 import os
+
+import flask
 import telebot
 import flag
 
+from flask import Flask, request
 from jinja2 import Template
 from telebot import types
 
@@ -150,13 +153,30 @@ def country_statistics_command_handler(message):
 
 
 # callback country command handler
-@bot.callback_query_handler(func=lambda callback: True)
-def callback_country_statistics_command_handler(callback):
-    callback.message.text = callback.data
-    bot.answer_callback_query(callback_query_id=callback.id)
-    country_statistics_command_handler(callback.message)
+@bot.callback_query_handler(func=lambda call: True)
+def callback_country_statistics_command_handler(call):
+    call.message.text = call.data
+    bot.answer_callback_query(callback_query_id=call.id)
+    country_statistics_command_handler(call.message)
+
+
+# set webhook
+server = Flask(__name__)
+
+
+@server.route("/" + token, methods=["POST"])
+def get_messages():
+    bot.process_new_updates([types.Update.de_json(request.stream.read().decode("utf-8"))])
+    return "!", 200
+
+
+@server.route("/")
+def webhook():
+    bot.remove_webhook()
+    bot.set_webhook(url=os.getenv("HEROKU_URL") + token)
+    return "!", 200
 
 
 # application entry point
 if __name__ == '__main__':
-    bot.infinity_polling()
+    server.run(host="0.0.0.0", port=int(os.environ.get("PORT", 8443)))
