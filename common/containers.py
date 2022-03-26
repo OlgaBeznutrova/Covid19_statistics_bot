@@ -10,7 +10,7 @@ class Container(containers.DeclarativeContainer):
 
     mongo_db_context = providers.Singleton(
         MongoDBContext,
-        connection_string=os.getenv("CONNECTION_STRING"),
+        connection_string=os.getenv("MONGODB_URI"),
         db_name=os.getenv("DB_NAME")
     )
     country_service = providers.Singleton(

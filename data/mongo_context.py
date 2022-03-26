@@ -1,6 +1,5 @@
 from datetime import datetime, timedelta
 from pymongo import MongoClient
-import time
 
 
 class MongoDBContext:
