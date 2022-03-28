@@ -1,6 +1,5 @@
 import os
 
-import flask
 import telebot
 import flag
 
