@@ -174,8 +174,7 @@ def get_message():
 @server.route("/")
 def webhook():
     bot.remove_webhook()
-    # bot.set_webhook(url=os.getenv("HEROKU_URL") + token)
-    bot.set_webhook(url="https://covid19stats-b.herokuapp.com/" + token)
+    bot.set_webhook(url=os.getenv("HEROKU_URL") + token)
     return "!!", 200
 
 
