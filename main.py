@@ -35,7 +35,7 @@ def start_command_handler(message):
     markup.add(button_geo)
 
     bot.send_message(chat_id=chat_id,
-                     text=f"Hello, {message.from_user.first_name}! Write country name or send me the location:",
+                     text=f"Hello, {message.from_user.first_name}!\nWrite country name or send me the location:",
                      reply_markup=markup)
 
     # help_command_handler(message)
