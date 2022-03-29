@@ -8,6 +8,8 @@ Bot can show you:
 
 <b>Commands</b>: start, help, statistics, contacts
 
+This application uses <b>MongoDB</b>s:
+
 This application uses <b>API</b>s:
 <ul>
   <li>https://covid-193.p.rapidapi.com</li>
